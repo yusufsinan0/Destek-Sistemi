@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Dinamik URL yönlendirmesi: URL'deki kısmı sayfa parametresine aktarır
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)$ index.php?sayfa=$1 [L,QSA]
+
+# Ana dizindeki sayfalar için özel kurallar (login, sign-up)
+RewriteRule ^(login|sign-up)$ $1.php [L]
+
+# Varsayılan olarak index.php'yi yükle
+RewriteRule ^$ index.php [L]
